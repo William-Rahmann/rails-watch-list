@@ -1,0 +1,16 @@
+<h1><%= @list.name %></h1>
+
+<%= link_to "Add a movie", new_list_bookmark_path(@list) %>
+
+<ul>
+  <% @list.bookmarks.each do |bookmark| %>
+    <li>
+      <%= image_tag bookmark.movie.poster_url, width: 150 %>
+      <%= bookmark.movie.title %>
+      <% if bookmark.comment.present? %>
+        — <%= bookmark.comment %>
+      <% end %>
+      <%= button_to "Remove", bookmark_path(bookmark), method: :delete %>
+    </li>
+  <% end %>
+</ul>
